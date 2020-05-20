@@ -1,0 +1,15 @@
+You will be embarking on a premade story written by me where you play an animal on the hunt for a food stash.
+This is mostly just a slightly interactive book where you will sit back and have a story unfold. 
+However the animal you pick or make will have an impact on weather you live or not. There is a premade set of 5 animals for you to choose from. 
+All you need to do is type there name when you get to the picking of an animal phase. You can also create your own by typing create. This will make you a set of 3.
+You can choose one of the three by typing the position they are from the top. The top one being 1, the middle being 2, and the bottom one being 3.
+Animals have their own stats for things that happen in the story that require ability checks such as dexterity or strength.
+These stats can be positive or negative modifier to a random dice roll of a 20 where the number will be applied to the dice rolled to get your totoal.
+All animals have these and when you create an animal these are generated at random. You will not know the premade animal's stats but use your head. 
+They represent what they can do in real life.
+You have 30 health points and whenever you fail an ability check you will take a random amount of damage. If you die the game ends. 
+You can forage for food at certain types of checks for a maximum of 4 pieces (you start with 3). 
+You can heal by eating a meal when you reach certain ability check area.
+That's it. Are you ready to begin?
+onward
+
