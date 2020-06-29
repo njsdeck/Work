@@ -16,6 +16,7 @@ def count(filename):
                 else:
                     new.append(word)
                 total+=1
+    f.close()
     return total,repeat
 def percentage(total,repeat):
     percent = repeat/total
