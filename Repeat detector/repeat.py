@@ -3,14 +3,7 @@ data=[]
 new=[]
 replace=[",",'""','.','?',"!"]
 def main():
-    choice = input("Type 1 for counting each line. 2 for each word.")
-    if choice == "1":
-        total,repeat = line(replace)
-    if choice == "2":
-        total,repeat = word(replace)
-    if choice != "1" and choice != "2":
-        print("Wrong answer please try again.")
-        main()
+    total,repeat=choice()
     print(total)
     print(repeat)
     percentage(total,repeat)
@@ -62,4 +55,15 @@ def word(replace):
 def percentage(total,repeat):
     percent = repeat/total*100
     print("This file repeats " +str(percent) + "% of the time.")
+def choice():
+    choice = input("Type 1 for counting each line. 2 for each word.")
+    if choice == "1":
+        total,repeat = line(replace)
+        return total,repeat
+    if choice == "2":
+        total,repeat = word(replace)
+        return total,repeat
+    if choice != "1" and choice != "2":
+        print("Wrong answer please try again.")
+        main()
 main()
