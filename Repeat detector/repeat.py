@@ -7,9 +7,9 @@ def main():
     print(total)
     print(repeat)
     percentage(total,repeat)
-def line(replace):
-    counter=[]
-    filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
+def line(replace,filename):
+    #counter=[]
+    #filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
     total=0
     repeat=0
     with open(filename,'r') as f:
@@ -35,8 +35,8 @@ def line(replace):
     f.close()
     #print(data)
     return total,repeat
-def word(replace):
-    filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
+def word(replace,filename):
+    #filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
     total=0
     repeat=0
     with open(filename,'r') as f:
@@ -56,12 +56,13 @@ def percentage(total,repeat):
     percent = repeat/total*100
     print("This file repeats " +str(percent) + "% of the time.")
 def choice():
+    filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
     choice = input("Type 1 for counting each line. 2 for each word.")
     if choice == "1":
-        total,repeat = line(replace)
+        total,repeat = line(replace,filename)
         return total,repeat
     if choice == "2":
-        total,repeat = word(replace)
+        total,repeat = word(replace,filename)
         return total,repeat
     if choice != "1" and choice != "2":
         print("Wrong answer please try again.")
