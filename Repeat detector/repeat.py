@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plotter
+data=[]
 new=[]
 replace=[",",'""','.','?',"!"]
 def main():
@@ -13,6 +15,7 @@ def main():
     print(repeat)
     percentage(total,repeat)
 def line(replace):
+    counter=[]
     filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
     total=0
     repeat=0
@@ -21,12 +24,23 @@ def line(replace):
             for i in replace:
                 line=line.replace(i, "")
             print(line)
-            if new.count(line) > 0:
+            if line in new:
+            #if new.count(line) > 0:
                 repeat+=1
+                # line=line.strip("\n")
+                # data.append(line)
             else:
                 new.append(line)
             total+=1
+        # for i in new:
+        #     check=data.count(i)
+        #     if check==0:
+        #         pass
+        #     else:
+        #         counter.append(check)
+    #print(counter)
     f.close()
+    #print(data)
     return total,repeat
 def word(replace):
     filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
