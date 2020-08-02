@@ -4,11 +4,21 @@ data=[]
 new=[]
 replace=[",",'""','.','?',"!"]
 def main():
-    total,repeat,counter=choice()
-    print(total)
-    print(repeat)
-    percentage(total,repeat)
-    #graph(data,counter)
+    fileopen()
+def fileopen():
+    filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
+    try:
+        fid=open( filename, 'r')
+    except FileNotFoundError:
+        print("File doesn't exist. Try again")
+        main()
+    else:
+        fid.close()
+        total,repeat,counter=choice(filename)
+        print(total)
+        print(repeat)
+        percentage(total,repeat)
+        #graph(data,counter)
 def line(replace,filename):
     counter=[]
     total=0
@@ -65,22 +75,21 @@ def word(replace,filename):
 def percentage(total,repeat):
     percent = repeat/total*100
     print("This file repeats " +str(percent) + "% of the time.")
-def choice():
-    filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
-    choice = input("Type 1 for counting each line. 2 for each word.")
-    if choice == "1":
+def choice(filename):
+    number = input("Type 1 for counting each line. 2 for each word.")
+    if number == "1":
         total,repeat,counter = line(replace,filename)
         return total,repeat,counter
-    if choice == "2":
+    if number == "2":
         total,repeat,counter = word(replace,filename)
         return total,repeat,counter
-    if choice != "1" and choice != "2":
+    if number != "1" and number != "2":
         print("Wrong answer please try again.")
         main()
-# def graph(data,counter):
-#     labels=data
-#     fig = plt.figure(figsize =(100,70))
-#     plt.pie(counter, labels = data)
-#     plt.show()
-#     print("You reached graph.")
+def graph(data,counter):
+    labels=data
+    fig = plt.figure(figsize =(100,70))
+    plt.pie(counter, labels = data)
+    plt.show()
+    print("You reached graph.")
 main()
