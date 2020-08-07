@@ -30,7 +30,6 @@ def line(replace,filename):
                 line=line.strip("\n")
             print(line)
             if line in new:
-            #if new.count(line) > 0:
                 repeat+=1
                 data.append(line)
             else:
