@@ -1,7 +1,7 @@
 import random
 #from character import character
 class character:
-    def __init__(self,race,str,dex,con,char,wis,int):
+    def __init__(self,race,str,dex,con,char,wis,int,speed):
         self.race=race
         self.str=str
         self.dex=dex
@@ -9,6 +9,7 @@ class character:
         self.char=char
         self.wis=wis
         self.int=int
+        self.speed=speed
     def dex_check(self):
         '''
         Does the dexterity check.
@@ -127,7 +128,7 @@ def main():
     choice1 = int(input("Press 1 for Half-Orc, 2 Human, 3 Tiefling, 4 Halfling, 5 Dragonborn, 6 Aasimar, 7 Kenku, 8 Kobold, or 9 Genasi."))
     race=race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore)
     print("You chose a "+race+ ".")
-    cscore,iscore,wscore,sscore,dscore,conscore= score_total(race,cscore,iscore,wscore,sscore,dscore,conscore)
+    speed,cscore,iscore,wscore,sscore,dscore,conscore= score_total(race,cscore,iscore,wscore,sscore,dscore,conscore)
 ###########################################################################
 #                           Race Creation
 def race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore):
@@ -147,8 +148,10 @@ def race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore):
 def Half_orc(cscore,iscore,wscore,sscore,dscore,conscore):
     sscore+=2
     conscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    speed = 30
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Human(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     varient = input('Are you playing a varient human. y for yes or n for no')
     if varient == "y":
         for i in range(2):
@@ -161,7 +164,7 @@ def Human(cscore,iscore,wscore,sscore,dscore,conscore):
         sscore+=1
         dscore+=1
         conscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def varient_human(score_increase,cscore,iscore,wscore,sscore,dscore,conscore):
     human_add = {
     1:charisma_increase,
@@ -174,26 +177,32 @@ def varient_human(score_increase,cscore,iscore,wscore,sscore,dscore,conscore):
     new_value=human_add.get(score_increase,"Wrong Race")
     return new_value(cscore,iscore,wscore,sscore,dscore,conscore)
 def Tiefling(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     cscore+=2
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Halfling(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 25
     dscore+=2
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Dragonborn(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     sscore+=2
     cscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Aasimar(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     cscore+=2
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Kenku(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     dscore+=2
     wscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Kobold(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     dscore+=2
     sscore-=2
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def Genasi(cscore,iscore,wscore,sscore,dscore,conscore):
     conscore+=2
     which = int(input("Which Genasi type would you like to be? 1 for water, 2 fire, 3 earth, 4 air."))
@@ -203,20 +212,24 @@ def Genasi(cscore,iscore,wscore,sscore,dscore,conscore):
     3:earth_genasi,
     4:air_genasi
     }
-    gen_type=which_genasi.get(which,"Wrong Race")
+    gen_type=which_genasi.get(which,"Wrong answer")
     return gen_type(cscore,iscore,wscore,sscore,dscore,conscore)
 def water_genasi(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     wscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def earth_genasi(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     sscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def air_genasi(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     dscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 def fire_genasi(cscore,iscore,wscore,sscore,dscore,conscore):
+    speed = 30
     iscore+=1
-    return cscore,iscore,wscore,sscore,dscore,conscore
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 ###########################################################################
 #                             Skill Increase and Creation
 def ability_score():
