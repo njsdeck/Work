@@ -129,6 +129,7 @@ def main():
     race=race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore)
     print("You chose a "+race+ ".")
     speed,cscore,iscore,wscore,sscore,dscore,conscore= score_total(race,cscore,iscore,wscore,sscore,dscore,conscore)
+    speed,cscore,iscore,wscore,sscore,dscore,conscore = class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore)
 ###########################################################################
 #                           Race Creation
 def race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore):
@@ -273,6 +274,7 @@ def ability_score():
         check=[]
         for i in range(6):
             check.append(roll())
+        check.sort()
         print(check)
         check,cscore=charisma(check)
         check,iscore=intel(check)
@@ -401,7 +403,38 @@ def roll():
     new_roll.pop(0)
     for i in new_roll:
         rolled=rolled+i
-    print(rolled)
+    #print(rolled)
     return rolled
 ###########################################################################
+#                           Class Choice
+def class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    class2 = int(input("What class would you like to be. Press 1 for fighter, 2 for paladin, 3 for warlock, 4 ranger, 5 monk, 6 rogue, 7 cleric, 8 bard."))
+    class_decision = {
+    1:fighter,
+    2:paladin,
+    3:warlock,
+    4:ranger,
+    5:monk,
+    6:rogue,
+    7:cleric,
+    8:bard
+    }
+    func=class_decision.get(class2,"Wrong Answer")
+    return func(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def fighter(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def paladin(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def warlock(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def ranger(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def monk(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def rogue(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+def cleric(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
+def bard(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    return speed,cscore,iscore,wscore,sscore,dscore,conscore
 main()

@@ -4,7 +4,7 @@ def main():
 def calc(c):
     while True:
         x = input("What number would you like to add. Type done to be done.")
-        if x == "done":
+        if x == "done" or x == "Done":
             print(c)
             return
         else:
