@@ -2,16 +2,16 @@ from matplotlib import pyplot as plt
 import numpy as np
 data=[]
 new=[]
-replace=[",",'""','.','?',"!"]
+replace=[",",'""','.','?',"!","(", ")","'","-"]
 def main():
     fileopen()
 def fileopen():
-    filename = input("Please type the name of the text file you wish to open. Please include the .txt.")
+    filename = input("Please type the name of the text file you wish to open. Please include the .txt file extension.")
     try:
         fid=open( filename, 'r')
     except FileNotFoundError:
         print("File doesn't exist. Try again")
-        main()
+        fileopen()
     else:
         fid.close()
         total,repeat,counter=choice(filename)
@@ -27,7 +27,7 @@ def line(replace,filename):
         for line in f:
             for i in replace:
                 line=line.replace(i, "")
-                line=line.strip("\n")
+            line=line.strip("\n")
             print(line)
             if line in new:
                 repeat+=1
@@ -54,7 +54,7 @@ def word(replace,filename):
         for line in f:
             for i in replace:
                 line=line.replace(i, "")
-                line=line.strip("\n")
+            line=line.strip("\n")
             for word in line.split():
                 print(word)
                 if new.count(word) > 0:
