@@ -1,7 +1,7 @@
 import random
 #from character import character
 class character:
-    def __init__(self,race,str,dex,con,char,wis,int,speed):
+    def __init__(self,hit_dice,Class,race,str,dex,con,char,wis,int,speed):
         self.race=race
         self.str=str
         self.dex=dex
@@ -10,6 +10,8 @@ class character:
         self.wis=wis
         self.int=int
         self.speed=speed
+        self.hit_dice = hit_dice
+        self.Class = Class
     def dex_check(self):
         '''
         Does the dexterity check.
@@ -123,13 +125,36 @@ class character:
         #     print("You fail the action and take " +str(damage)+ " brain damage to your health")
         #     self.health=self.health-damage
         #     print("Health:" +str(self.health))
+    def test(self):
+        print("You made it")
+        print(self.hit_dice)
+        print(self.Class)
 def main():
+    drive()
+def drive():
     cscore,iscore,wscore,sscore,dscore,conscore = ability_score()
     choice1 = int(input("Press 1 for Half-Orc, 2 Human, 3 Tiefling, 4 Halfling, 5 Dragonborn, 6 Aasimar, 7 Kenku, 8 Kobold, or 9 Genasi."))
     race=race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore)
     print("You chose a "+race+ ".")
     speed,cscore,iscore,wscore,sscore,dscore,conscore= score_total(race,cscore,iscore,wscore,sscore,dscore,conscore)
-    speed,cscore,iscore,wscore,sscore,dscore,conscore = class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+    hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore = class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore)
+    save(Class,race,cscore,iscore,wscore,sscore,dscore,conscore)
+    cscore,iscore,wscore,sscore,dscore,conscore = stat_mod(cscore,iscore,wscore,sscore,dscore,conscore)
+    # Character = character(hit_dice,Class,race,sscore,dscore,conscore,cscore,wscore,iscore,speed)
+    # Character.test()
+def save(Class,race,cscore,iscore,wscore,sscore,dscore,conscore):
+    with open('char.txt', 'w') as file:
+        file.write(" ")
+        file.close()
+    with open('char.txt', 'a') as file:
+        file.write("You are a " +race+ " " +Class+".\n ")
+        file.write("strength: " +str(sscore)+"\n")
+        file.write(" dexterity: " +str(dscore)+"\n")
+        file.write(" wisdom: " +str(wscore)+"\n")
+        file.write(" charisma: " +str(cscore)+"\n")
+        file.write(" constitution: " +str(conscore)+"\n")
+        file.write(" intelligence: " +str(iscore)+"\n")
+        file.close()
 ###########################################################################
 #                           Race Creation
 def race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore):
@@ -139,7 +164,7 @@ def race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore):
     3:"Tiefling",
     4:"Halfling",
     5:"Dragonborn",
-    6:"Assimar",
+    6:"Aasimar",
     7:"Kenku",
     8:"Kobold",
     9:"Genasi"
@@ -298,7 +323,7 @@ def charisma(list):
         if i != char:
             counter+=1
     print(list)
-    return list,charisma
+    return list,char
 def intel(list):
     counter=0
     intel = int(input("What would you like your intelligence score to be?"))
@@ -405,36 +430,62 @@ def roll():
         rolled=rolled+i
     #print(rolled)
     return rolled
+def stat_mod(cscore,iscore,wscore,sscore,dscore,conscore):
+    cscore = cscore-10
+    cscore = cscore/2
+    print(cscore)
+    return cscore,iscore,wscore,sscore,dscore,conscore
 ###########################################################################
 #                           Class Choice
 def class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    class2 = int(input("What class would you like to be. Press 1 for fighter, 2 for paladin, 3 for warlock, 4 ranger, 5 monk, 6 rogue, 7 cleric, 8 bard."))
+    class2 = int(input("What class would you like to be. Press 1 for fighter, 2 for paladin, 3 for warlock, 4 ranger, 5 monk, 6 rogue, 7 cleric, 8 bard, 9 barbarian."))
     class_decision = {
-    1:fighter,
-    2:paladin,
-    3:warlock,
-    4:ranger,
-    5:monk,
-    6:rogue,
-    7:cleric,
-    8:bard
+    1:fight,
+    2:pala,
+    3:war,
+    4:rang,
+    5:mon,
+    6:rog,
+    7:cler,
+    8:ba,
+    9:barb
     }
     func=class_decision.get(class2,"Wrong Answer")
     return func(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def fighter(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def paladin(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def warlock(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def ranger(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def monk(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def rogue(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-def cleric(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return speed,cscore,iscore,wscore,sscore,dscore,conscore
-def bard(speed,cscore,iscore,wscore,sscore,dscore,conscore):
-    return speed,cscore,iscore,wscore,sscore,dscore,conscore
+def fight(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Fighter"
+    hit_dice=10
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def pala(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Paladin"
+    hit_dice = 10
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def war(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Warlock"
+    hit_dice = 8
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def rang(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Ranger"
+    hit_dice = 10
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def mon(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Monk"
+    hit_dice = 8
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def rog(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Rogue"
+    hit_dice = 8
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def cler(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Cleric"
+    hit_dice = 8
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def ba(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Bard"
+    hit_dice = 8
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
+def barb(speed,cscore,iscore,wscore,sscore,dscore,conscore):
+    Class = "Barbarian"
+    hit_dice = 12
+    return hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore
 main()
