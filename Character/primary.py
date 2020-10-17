@@ -1,7 +1,7 @@
 import random
 #from character import character
 class character:
-    def __init__(self,hit_dice,Class,race,str,dex,con,char,wis,int,speed):
+    def __init__(self,hit_dice,Class,race,str,dex,con,char,wis,int,speed,level):
         self.race=race
         self.str=str
         self.dex=dex
@@ -12,6 +12,7 @@ class character:
         self.speed=speed
         self.hit_dice = hit_dice
         self.Class = Class
+        self.level = level
     def dex_check(self):
         '''
         Does the dexterity check.
@@ -129,31 +130,53 @@ class character:
         print("You made it")
         print(self.hit_dice)
         print(self.Class)
+        print(self.level)
+    def save(self):
+        with open('char.txt', 'w') as file:
+            file.write(" ")
+            file.close()
+        with open('char.txt', 'a') as file:
+            file.write("You are a " +self.race+ " " +self.Class+" of level "+self.level+ ".\n")
+            file.write(" strength: " +str(self.str)+"\n")
+            file.write(" dexterity: " +str(self.dex)+"\n")
+            file.write(" wisdom: " +str(self.wis)+"\n")
+            file.write(" charisma: " +str(self.char)+"\n")
+            file.write(" constitution: " +str(self.con)+"\n")
+            file.write(" intelligence: " +str(self.int)+"\n")
+            file.write(" You can move " +str(self.speed)+ " feet with your walk action."+'\n')
+            file.close()
+    def stat_mod(self):
+        self.char = self.char-10
+        self.char = self.char/2
+        print(self.char)
 def main():
     drive()
 def drive():
     cscore,iscore,wscore,sscore,dscore,conscore = ability_score()
     choice1 = int(input("Press 1 for Half-Orc, 2 Human, 3 Tiefling, 4 Halfling, 5 Dragonborn, 6 Aasimar, 7 Kenku, 8 Kobold, or 9 Genasi."))
     race=race_creation(choice1,cscore,iscore,wscore,sscore,dscore,conscore)
-    print("You chose a "+race+ ".")
     speed,cscore,iscore,wscore,sscore,dscore,conscore= score_total(race,cscore,iscore,wscore,sscore,dscore,conscore)
     hit_dice,Class,speed,cscore,iscore,wscore,sscore,dscore,conscore = class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore)
-    save(Class,race,cscore,iscore,wscore,sscore,dscore,conscore)
-    cscore,iscore,wscore,sscore,dscore,conscore = stat_mod(cscore,iscore,wscore,sscore,dscore,conscore)
-    # Character = character(hit_dice,Class,race,sscore,dscore,conscore,cscore,wscore,iscore,speed)
-    # Character.test()
-def save(Class,race,cscore,iscore,wscore,sscore,dscore,conscore):
+    level=level_choice()
+    #save(Class,race,cscore,iscore,wscore,sscore,dscore,conscore,speed,level)
+    #cscore,iscore,wscore,sscore,dscore,conscore = stat_mod(cscore,iscore,wscore,sscore,dscore,conscore)
+    Character = character(hit_dice,Class,race,sscore,dscore,conscore,cscore,wscore,iscore,speed,level)
+    Character.test()
+    Character.save()
+    Character.stat_mod()
+def save(Class,race,cscore,iscore,wscore,sscore,dscore,conscore,speed,level):
     with open('char.txt', 'w') as file:
         file.write(" ")
         file.close()
     with open('char.txt', 'a') as file:
-        file.write("You are a " +race+ " " +Class+".\n ")
-        file.write("strength: " +str(sscore)+"\n")
+        file.write("You are a " +race+ " " +Class+" of level "+level+ ".\n")
+        file.write(" strength: " +str(sscore)+"\n")
         file.write(" dexterity: " +str(dscore)+"\n")
         file.write(" wisdom: " +str(wscore)+"\n")
         file.write(" charisma: " +str(cscore)+"\n")
         file.write(" constitution: " +str(conscore)+"\n")
         file.write(" intelligence: " +str(iscore)+"\n")
+        file.write(" You can move " +str(speed)+ " feet with your walk action."+'\n')
         file.close()
 ###########################################################################
 #                           Race Creation
@@ -435,6 +458,9 @@ def stat_mod(cscore,iscore,wscore,sscore,dscore,conscore):
     cscore = cscore/2
     print(cscore)
     return cscore,iscore,wscore,sscore,dscore,conscore
+def level_choice():
+    level =input("What level are you?")
+    return level
 ###########################################################################
 #                           Class Choice
 def class_choice(speed,cscore,iscore,wscore,sscore,dscore,conscore):
