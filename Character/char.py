@@ -131,8 +131,7 @@ class character:
             self.health=self.health-damage
             print("Health:" +str(self.health))
     def test(self):
-        print("You made it")
-        print(self.hit_dice)
+        print("Your hit dice is a "+str(self.hit_dice))
         print(self.Class)
         print(self.level)
     def save(self):

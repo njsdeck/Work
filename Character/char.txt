@@ -1,8 +1,8 @@
- You are a Halfling Fighter of level 8.
+ You are a Tiefling Fighter of level 2.
  strength: 13 with a modifier of: 1
- dexterity: 15 with a modifier of: 2
+ dexterity: 13 with a modifier of: 1
  wisdom: 13 with a modifier of: 1
- charisma: 13 with a modifier of: 1
+ charisma: 15 with a modifier of: 2
  constitution: 13 with a modifier of: 1
  intelligence: 13 with a modifier of: 1
- You can move 25 feet with your walk action.
+ You can move 30 feet with your walk action.
