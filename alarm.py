@@ -10,7 +10,5 @@ def main():
         current_time = time.strftime("%H:%M:%S", t)
         if keyboard.is_pressed("`") == True:
             quit()
-        # else:
-        #     pass
     playsound("alarm.wav")
 main()
