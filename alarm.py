@@ -12,7 +12,8 @@ def noise():
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
     print("Alarm set")
-    while current_time != alarm:
+    while current_time < alarm:
+        time.sleep(.05)
         t = time.localtime()
         current_time = time.strftime("%H:%M:%S", t)
         if keyboard.is_pressed("`") == True:
@@ -25,8 +26,10 @@ def addition():
     alarm_time = time.strftime("%I %M %p",time.localtime(t1))
     t = time.time()
     current_time = time.strftime("%I %M %p", time.localtime(t))
-    print("Alarm Set")
-    while current_time != alarm_time:
+    #print("Alarm set at " +str(current_time)+ ".")
+    print("Alarm will got off at " +str(alarm_time)+ ".")
+    while current_time < alarm_time:
+        time.sleep(.05)
         t = time.time()
         current_time = time.strftime("%I %M %p", time.localtime(t))
         if keyboard.is_pressed("`") == True:
