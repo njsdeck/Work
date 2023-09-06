@@ -1,8 +1,8 @@
- You are a Tiefling Fighter of level 2.
+ You are a Tiefling Ranger of level 3.
  strength: 13 with a modifier of: 1
- dexterity: 13 with a modifier of: 1
- wisdom: 13 with a modifier of: 1
- charisma: 15 with a modifier of: 2
- constitution: 13 with a modifier of: 1
- intelligence: 13 with a modifier of: 1
+ dexterity: 11 with a modifier of: 0
+ wisdom: 16 with a modifier of: 3
+ charisma: 9 with a modifier of: -1
+ constitution: 14 with a modifier of: 2
+ intelligence: 15 with a modifier of: 2
  You can move 30 feet with your walk action.
